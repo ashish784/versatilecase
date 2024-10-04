@@ -15,8 +15,9 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import LoginModal from "@/components/LoginModal";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
-const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
+const DesignPreview = ({ configuration }: { configuration: Configuration}) => {
     const router = useRouter();
     const { toast } = useToast();
 
@@ -25,7 +26,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
     const [showConfetti, setShowConfetti] = useState(false);
-    useEffect(() => setShowConfetti(true));
+    useEffect(() => (setShowConfetti(true)), []);
 
     const { color, model, finish, material } = configuration;
     const tw = COLORS.find((supportedColor) => supportedColor.value === color)?.tw
